@@ -35,6 +35,9 @@
   },
   "name": "@pago/use-reference",
   "author": "Patrick Gotthardt <patrick@pagosoft.com>",
+  "publishConfig": {
+    "access": "public"
+  },
   "module": "dist/use-reference.esm.js",
   "size-limit": [
     {
