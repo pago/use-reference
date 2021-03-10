@@ -6,6 +6,7 @@ The returned object is stable but all of its properties will always have the lat
 It is concurrent mode safe.
 
 ```js
+import {useReference} from '@pago/use-reference';
 const api = useReference({
     onSubmit,
     onError,
@@ -37,6 +38,8 @@ However, when working with multiple values like those it can become quite
 cumbersome to read through all of their setup code. For example:
 
 ```js
+import {useLatestRef} from "@pago/use-reference";
+
 const onSubmitRef = useLatestRef(onSubmit);
 const onErrorRef = useLatestRef(onError);
 const onChangeRef = useLatestRef(onChange);
@@ -57,6 +60,8 @@ increasing the noise in my code.
 That's why `useReference` exists. To streamline this pattern and to reduce the noise.
 
 ```js
+import {useReference} from "@pago/use-reference";
+
 const api = useReference({
     onSubmit,
     onError,
