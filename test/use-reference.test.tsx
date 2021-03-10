@@ -1,10 +1,10 @@
-import {renderHook} from "@testing-library/react-hooks";
+import { renderHook } from '@testing-library/react-hooks';
 import { useReference } from '../src';
 
 test('it provides access to the initial value', () => {
   let onClick = jest.fn();
-  const {result} = renderHook(({value}) => useReference(value), {
-    initialProps: {value: {onClick}}
+  const { result } = renderHook(({ value }) => useReference(value), {
+    initialProps: { value: { onClick } },
   });
 
   result.current.onClick();
@@ -13,13 +13,13 @@ test('it provides access to the initial value', () => {
 
 test('it provides access to the latest value', () => {
   let onClick = jest.fn();
-  const {result, rerender} = renderHook(({value}) => useReference(value), {
-    initialProps: {value: {onClick}}
+  const { result, rerender } = renderHook(({ value }) => useReference(value), {
+    initialProps: { value: { onClick } },
   });
 
   let newOnClick = jest.fn();
   rerender({
-    value: {onClick: newOnClick}
+    value: { onClick: newOnClick },
   });
 
   result.current.onClick();
@@ -29,13 +29,9 @@ test('it provides access to the latest value', () => {
 
 test('it provides access to all keys of the reference', () => {
   let onClick = jest.fn();
-  const {result} = renderHook(({value}) => useReference(value), {
-    initialProps: {value: {onClick, name: 'hello', version: '1.0.0'}}
+  const { result } = renderHook(({ value }) => useReference(value), {
+    initialProps: { value: { onClick, name: 'hello', version: '1.0.0' } },
   });
 
-  expect(Object.keys(result.current)).toEqual([
-      'onClick',
-      'name',
-      'version',
-  ]);
+  expect(Object.keys(result.current)).toEqual(['onClick', 'name', 'version']);
 });

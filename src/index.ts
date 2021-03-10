@@ -1,4 +1,4 @@
-import {MutableRefObject, useEffect, useRef, useState} from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 export function useReference<T extends object>(ref: T): T {
   const holder = useLatestRef(ref);
@@ -20,7 +20,7 @@ export function useReference<T extends object>(ref: T): T {
       },
       ownKeys() {
         return Reflect.ownKeys(holder.current);
-      }
+      },
     });
   });
   return proxy;
@@ -28,8 +28,11 @@ export function useReference<T extends object>(ref: T): T {
 
 export function useLatestRef<T>(ref: T): MutableRefObject<T> {
   const holder = useRef(ref);
-  useEffect(function updateReference() {
-    holder.current = ref;
-  }, [ref]);
+  useEffect(
+    function updateReference() {
+      holder.current = ref;
+    },
+    [ref]
+  );
   return holder;
 }
